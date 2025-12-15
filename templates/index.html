@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Scam Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛡️ Job Scam Detector</h1>
+            <p>Analyze job postings using AI to detect potential scams.</p>
+        </header>
+
+        <main>
+            <div class="card input-card">
+                <h2>Job Details</h2>
+                <form id="scanForm">
+                    <div class="form-group">
+                        <label for="company">Company Name</label>
+                        <input type="text" id="company" placeholder="e.g. Acme Corp" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="title">Job Title</label>
+                        <input type="text" id="title" placeholder="e.g. Data Entry Specialist" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Contact Email (Optional)</label>
+                        <input type="email" id="email" placeholder="e.g. hr@gmail.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="salary">Salary / Stipend</label>
+                        <input type="text" id="salary" placeholder="e.g. $500/week or Unpaid">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Job Description (Paste full text)</label>
+                        <textarea id="description" rows="6" placeholder="Paste the job description here..." required></textarea>
+                    </div>
+
+                    <button type="submit" id="submitBtn">Analyze Job</button>
+                </form>
+            </div>
+
+            <div class="card result-card hidden" id="resultCard">
+                <h2>Analysis Result</h2>
+                <div id="riskIndicator" class="risk-badge">
+                    <span id="riskLabel">PENDING</span>
+                </div>
+                
+                <div class="details">
+                    <p><strong>Confidence:</strong> <span id="confidenceScore">0%</span></p>
+                    <div class="reasons">
+                        <h3>Why was this flagged?</h3>
+                        <ul id="reasonsList">
+                            <!-- Reasons will be injected here -->
+                        </ul>
+                    </div>
+                </div>
+                <button id="resetBtn" class="secondary-btn">Check Another</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>Disclaimer: This tool is for educational purposes only. Always verify job offers independently.</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

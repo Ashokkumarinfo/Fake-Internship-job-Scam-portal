@@ -1,0 +1,199 @@
+:root {
+    --bg-color: #0f172a;
+    --canvas-bg: #1e293b;
+    --primary-color: #22d3ee; /* Cyan */
+    --accent-color: #a855f7;  /* Purple */
+    --text-color: #f1f5f9;
+    --snake-head: #4ade80;    /* Green */
+    --food-color: #f472b6;    /* Pink */
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.game-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+}
+
+.score-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 8px 16px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.score-label {
+    font-size: 0.7rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.score-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.canvas-wrapper {
+    position: relative;
+    border-radius: 16px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 10px rgba(34, 211, 238, 0.1);
+    border: 2px solid var(--glass-border);
+    overflow: hidden;
+}
+
+#gameCanvas {
+    background-color: var(--canvas-bg);
+    display: block;
+    border-radius: 14px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.overlay h2 {
+    font-size: 2rem;
+    color: var(--text-color);
+}
+
+.primary-btn {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border: none;
+    border-radius: 50px;
+    color: var(--bg-color);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+}
+
+.primary-btn:active {
+    transform: translateY(1px);
+}
+
+.mobile-controls {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.control-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.control-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--text-color);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+    transition: background 0.1s;
+    touch-action: manipulation;
+}
+
+.control-btn:active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+    .mobile-controls {
+        display: flex;
+    }
+    
+    .canvas-wrapper {
+        width: 100%;
+        height: auto;
+    }
+
+    #gameCanvas {
+        width: 100%;
+        height: auto;
+        /* Maintain aspect ratio handled by JS resizing or CSS aspect-ratio */
+        aspect-ratio: 1 / 1; 
+    }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Neon Snake</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1 class="game-title">NEON SNAKE</h1>
+            <div class="score-card">
+                <span class="score-label">SCORE</span>
+                <span id="score" class="score-value">0</span>
+            </div>
+        </header>
+        
+        <div class="canvas-wrapper">
+            <canvas id="gameCanvas" width="400" height="400"></canvas>
+            <div id="startScreen" class="overlay active">
+                <h2>READY?</h2>
+                <p>Press any Arrow Key or Tap Start</p>
+                <button id="startBtn" class="primary-btn">START GAME</button>
+            </div>
+            <div id="gameOverScreen" class="overlay">
+                <h2>GAME OVER</h2>
+                <p>Score: <span id="finalScore">0</span></p>
+                <button id="restartBtn" class="primary-btn">PLAY AGAIN</button>
+            </div>
+        </div>
+
+        <div class="mobile-controls">
+            <div class="control-row">
+                <button class="control-btn" id="btnUp" aria-label="Up">▲</button>
+            </div>
+            <div class="control-row middle">
+                <button class="control-btn" id="btnLeft" aria-label="Left">◀</button>
+                <button class="control-btn" id="btnRight" aria-label="Right">▶</button>
+            </div>
+            <div class="control-row">
+                <button class="control-btn" id="btnDown" aria-label="Down">▼</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
